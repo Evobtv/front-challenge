@@ -36,20 +36,29 @@ export const Field = styled.div`
   margin-bottom: 3rem;
 `;
 
-export const InputContainer = styled.label`
+interface InputContainerProps {
+  typeErrorMessage: string;
+}
+
+export const InputContainer = styled.label<InputContainerProps>`
   display: flex;
   justify-content: space-between;
   padding: 0.25rem 0;
   padding-right: 5px;
   border-bottom: 2px solid #2d3748;
+  border-color: ${(props) => (props.typeErrorMessage ? "#F56565" : "#2d3748")};
 `;
 
-export const Input = styled.input`
+interface InputProps {
+  typeErrorMessage: string;
+}
+
+export const Input = styled.input<InputProps>`
   display: block;
   font-family: "Lato", sans-serif;
   font-size: 1.25rem;
   background-color: transparent;
-  color: #2d3748;
+  color: ${(props) => (props.typeErrorMessage ? "#F56565" : "#2d3748")};
   width: 90%;
   border: 0;
   outline: 0;
