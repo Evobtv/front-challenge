@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Banner from "../src/components/Banner";
 import { GridWrapper } from "../src/components/GridWrapper";
+import LoginForm from "../src/components/LoginForm";
 
 interface HomeProps {
   subtitle: string;
@@ -26,6 +27,7 @@ const Home: NextPage<HomeProps> = ({
         logoDesktop={logoDesktop}
         logoMobile={logoMobile}
       />
+      <LoginForm />
     </GridWrapper>
   );
 };
@@ -33,7 +35,6 @@ const Home: NextPage<HomeProps> = ({
 export default Home;
 
 export async function getServerSideProps() {
-  console.log("dentro do servidor");
   const response = await fetch(
     "https://front.evob.dev.marcomapa.com/front_challenge/info/"
   );
