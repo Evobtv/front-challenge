@@ -1,15 +1,29 @@
 import { CallAction, Logo, Slogan, SubTitle, Wrapper } from "./style";
 
-const Banner = () => {
+interface BannerProps {
+  subtitle: string;
+  slogan: string;
+  callAction: string;
+  logoDesktop: string;
+  logoMobile: string;
+}
+
+const Banner = ({
+  subtitle,
+  slogan,
+  callAction,
+  logoDesktop,
+  logoMobile,
+}: BannerProps) => {
   return (
     <Wrapper>
       <picture>
-        <source media="(min-width:728px)" srcSet="/images/Tapttoo.png"></source>
-        <Logo src="/images/TapttooMobile.png" alt="Topttoo"></Logo>
+        <source media="(min-width:728px)" srcSet={logoDesktop}></source>
+        <Logo src={logoMobile} alt="Topttoo"></Logo>
       </picture>
-      <SubTitle>O lugar certo para encontrar a sua próxima tatuagem</SubTitle>
-      <Slogan>Descubra e siga seus tatuadores e estilos preferidos</Slogan>
-      <CallAction>Acesse!</CallAction>
+      <SubTitle>{subtitle}</SubTitle>
+      <Slogan>{slogan}</Slogan>
+      <CallAction>{callAction}</CallAction>
     </Wrapper>
   );
 };
