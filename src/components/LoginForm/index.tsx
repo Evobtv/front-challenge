@@ -50,6 +50,25 @@ const LoginForm = () => {
     callback(event.target.value);
   };
 
+  const sendFormData = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("api/", {
+        method: "POST",
+        body: JSON.stringify({ email: email, password: password }),
+      });
+      const data = await response.json();
+
+      if (data.status === "Ok") {
+        alert("Credenciais corretas");
+      } else {
+        alert("Credenciais inválidas");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (email.length > 0) {
       setEmailError("");
@@ -66,7 +85,7 @@ const LoginForm = () => {
     <Wrapper>
       <Container>
         <Title>Acesse sua conta</Title>
-        <Form method="post">
+        <Form method="post" onSubmit={sendFormData}>
           <Field>
             <InputContainer typeErrorMessage={emailError}>
               <Input
