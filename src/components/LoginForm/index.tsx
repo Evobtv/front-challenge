@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { SetStateAction, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Field,
@@ -16,6 +16,8 @@ import {
   New,
   Register,
 } from "./style";
+import { handleValidity } from "../../utils/FormValidation";
+import { handleChange } from "../../utils/handleChangeEvent";
 
 const LoginForm = () => {
   const [email, setEmail] = useState<string>("");
@@ -23,33 +25,6 @@ const LoginForm = () => {
 
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
-
-  const handleValidity = (
-    event: React.InvalidEvent<HTMLInputElement>,
-    callback: React.Dispatch<SetStateAction<string>>
-  ) => {
-    event.preventDefault();
-
-    const errors: any = {
-      valueMissing: "Este campo é obrigatório.",
-      typeMismatch: "Insira um e-mail válido!",
-    };
-
-    const validity: any = event.target.validity;
-    console.log(validity);
-    for (const key in validity) {
-      if (validity[key]) {
-        callback(errors[key]);
-      }
-    }
-  };
-
-  const handleChange = (
-    event: React.InvalidEvent<HTMLInputElement>,
-    callback: React.Dispatch<SetStateAction<string>>
-  ) => {
-    callback(event.target.value);
-  };
 
   const sendFormData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { SetStateAction, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Field,
@@ -15,6 +15,8 @@ import {
   New,
   Register,
 } from "./style";
+import { handleValidity } from "../../utils/FormValidation";
+import { handleChange } from "../../utils/handleChangeEvent";
 
 const RegisterForm = () => {
   const [name, setName] = useState<string>("");
@@ -26,33 +28,6 @@ const RegisterForm = () => {
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
   const [confirmPasswordError, setConfirmPasswordError] = useState<string>("");
-
-  const handleValidity = (
-    event: React.InvalidEvent<HTMLInputElement>,
-    callback: React.Dispatch<SetStateAction<string>>
-  ) => {
-    event.preventDefault();
-
-    const errors: any = {
-      valueMissing: "Este campo é obrigatório.",
-      typeMismatch: "Insira um e-mail válido!",
-    };
-
-    const validity: any = event.target.validity;
-    console.log(validity);
-    for (const key in validity) {
-      if (validity[key]) {
-        callback(errors[key]);
-      }
-    }
-  };
-
-  const handleChange = (
-    event: React.InvalidEvent<HTMLInputElement>,
-    callback: React.Dispatch<SetStateAction<string>>
-  ) => {
-    callback(event.target.value);
-  };
 
   useEffect(() => {
     if (name.length > 0) {
@@ -158,6 +133,8 @@ const RegisterForm = () => {
                 type="password"
                 placeholder="senha"
                 required
+                minLength={6}
+                maxLength={20}
                 onChange={(e: React.InvalidEvent<HTMLInputElement>) =>
                   handleChange(e, setPassword)
                 }
@@ -191,6 +168,8 @@ const RegisterForm = () => {
                 type="password"
                 placeholder="confirme sua senha"
                 required
+                minLength={6}
+                maxLength={20}
                 onChange={(e: React.InvalidEvent<HTMLInputElement>) =>
                   handleChange(e, setConfirmPassword)
                 }
