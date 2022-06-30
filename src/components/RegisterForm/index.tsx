@@ -196,7 +196,7 @@ const RegisterForm = () => {
             <Error>{confirmPasswordError}</Error>
           </Field>
           <ButtonsContainer>
-            <LoginButton type="submit">Cadastre-se</LoginButton>
+            <LoginButton type="submit">Cadastrar-se</LoginButton>
           </ButtonsContainer>
         </Form>
         <OptionsContainer>
