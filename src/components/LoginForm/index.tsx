@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { SetStateAction, useState, useEffect } from "react";
 import {
   Container,
@@ -159,8 +160,10 @@ const LoginForm = () => {
           </ButtonsContainer>
         </Form>
         <OptionsContainer>
-          <New>Ainda não tem conta ?</New>
-          <Register>Cadastre-se</Register>
+          <New>Ainda não tem conta?</New>
+          <Link href={"/cadastro"}>
+            <Register>Cadastre-se</Register>
+          </Link>
         </OptionsContainer>
       </Container>
     </Wrapper>
