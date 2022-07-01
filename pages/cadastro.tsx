@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import Banner from "../src/components/Banner";
 import { GridWrapper } from "../src/components/GridWrapper";
 import RegisterForm from "../src/components/RegisterForm";
+import Head from "next/head";
 
 interface CadastroProps {
   subtitle: string;
@@ -19,16 +20,21 @@ const Cadastro: NextPage<CadastroProps> = ({
   logoMobile,
 }: CadastroProps) => {
   return (
-    <GridWrapper>
-      <Banner
-        subtitle={subtitle}
-        slogan={slogan}
-        callAction={callAction}
-        logoDesktop={logoDesktop}
-        logoMobile={logoMobile}
-      />
-      <RegisterForm />
-    </GridWrapper>
+    <>
+      <Head>
+        <title>Tapttoo - Cadastro</title>
+      </Head>
+      <GridWrapper>
+        <Banner
+          subtitle={subtitle}
+          slogan={slogan}
+          callAction={callAction}
+          logoDesktop={logoDesktop}
+          logoMobile={logoMobile}
+        />
+        <RegisterForm />
+      </GridWrapper>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Banner from "../src/components/Banner";
 import { GridWrapper } from "../src/components/GridWrapper";
 import LoginForm from "../src/components/LoginForm";
+import Head from "next/head";
 
 interface HomeProps {
   subtitle: string;
@@ -29,22 +30,27 @@ const Home: NextPage<HomeProps> = ({
   loginCall,
 }: HomeProps) => {
   return (
-    <GridWrapper>
-      <Banner
-        subtitle={subtitle}
-        slogan={slogan}
-        callAction={callAction}
-        logoDesktop={logoDesktop}
-        logoMobile={logoMobile}
-      />
-      <LoginForm
-        title={loginTitle}
-        forgot={loginForgot}
-        register={loginRegister}
-        registerCall={loginRegisterCall}
-        loginCall={loginCall}
-      />
-    </GridWrapper>
+    <>
+      <Head>
+        <title>Tapttoo</title>
+      </Head>
+      <GridWrapper>
+        <Banner
+          subtitle={subtitle}
+          slogan={slogan}
+          callAction={callAction}
+          logoDesktop={logoDesktop}
+          logoMobile={logoMobile}
+        />
+        <LoginForm
+          title={loginTitle}
+          forgot={loginForgot}
+          register={loginRegister}
+          registerCall={loginRegisterCall}
+          loginCall={loginCall}
+        />
+      </GridWrapper>
+    </>
   );
 };
 
