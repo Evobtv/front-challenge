@@ -9,6 +9,11 @@ interface HomeProps {
   callAction: string;
   logoDesktop: string;
   logoMobile: string;
+  loginTitle: string;
+  loginForgot: string;
+  loginRegister: string;
+  loginRegisterCall: string;
+  loginCall: string;
 }
 
 const Home: NextPage<HomeProps> = ({
@@ -17,6 +22,11 @@ const Home: NextPage<HomeProps> = ({
   callAction,
   logoDesktop,
   logoMobile,
+  loginTitle,
+  loginForgot,
+  loginRegister,
+  loginRegisterCall,
+  loginCall,
 }: HomeProps) => {
   return (
     <GridWrapper>
@@ -27,7 +37,13 @@ const Home: NextPage<HomeProps> = ({
         logoDesktop={logoDesktop}
         logoMobile={logoMobile}
       />
-      <LoginForm />
+      <LoginForm
+        title={loginTitle}
+        forgot={loginForgot}
+        register={loginRegister}
+        registerCall={loginRegisterCall}
+        loginCall={loginCall}
+      />
     </GridWrapper>
   );
 };
@@ -39,6 +55,7 @@ export async function getServerSideProps() {
     "https://front.evob.dev.marcomapa.com/front_challenge/info/"
   );
   const data = await response.json();
+
   return {
     props: {
       subtitle: data?.texts?.subtitle,
@@ -46,6 +63,11 @@ export async function getServerSideProps() {
       callAction: data?.texts?.call_action,
       logoDesktop: data?.images?.logo,
       logoMobile: data?.images?.logo_mobile,
+      loginTitle: data?.texts?.section_login?.title,
+      loginForgot: data?.texts?.section_login?.forgot,
+      loginRegister: data?.texts?.section_login?.register,
+      loginRegisterCall: data?.texts.section_login?.register_call,
+      loginCall: data?.texts.section_login?.login_call,
     },
   };
 }

@@ -19,7 +19,21 @@ import {
 import { handleValidity } from "../../utils/FormValidation";
 import { handleChange } from "../../utils/handleChangeEvent";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  title: string;
+  forgot: string;
+  register: string;
+  registerCall: string;
+  loginCall: string;
+}
+
+const LoginForm = ({
+  title,
+  forgot,
+  register,
+  registerCall,
+  loginCall,
+}: LoginFormProps) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -60,7 +74,7 @@ const LoginForm = () => {
   return (
     <Wrapper>
       <Container>
-        <Title>Acesse sua conta</Title>
+        <Title>{title}</Title>
         <Form method="post" onSubmit={sendFormData}>
           <Field>
             <InputContainer typeErrorMessage={emailError}>
@@ -130,14 +144,14 @@ const LoginForm = () => {
             <Error>{passwordError}</Error>
           </Field>
           <ButtonsContainer>
-            <ForgotButton type="button">Esqueceu sua senha?!</ForgotButton>
-            <LoginButton type="submit">Entrar</LoginButton>
+            <ForgotButton type="button">{forgot}</ForgotButton>
+            <LoginButton type="submit">{loginCall}</LoginButton>
           </ButtonsContainer>
         </Form>
         <OptionsContainer>
-          <New>Ainda não tem conta?</New>
+          <New>{register}</New>
           <Link href={"/cadastro"}>
-            <Register>Cadastre-se</Register>
+            <Register type="button">{registerCall}</Register>
           </Link>
         </OptionsContainer>
       </Container>

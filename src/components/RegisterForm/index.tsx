@@ -202,7 +202,7 @@ const RegisterForm = () => {
         <OptionsContainer>
           <New>Já tem uma conta?</New>
           <Link href={"/"}>
-            <Register>Acesse sua conta</Register>
+            <Register type="button">Acesse sua conta</Register>
           </Link>
         </OptionsContainer>
       </Container>
