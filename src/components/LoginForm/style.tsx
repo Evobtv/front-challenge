@@ -150,3 +150,14 @@ export const Register = styled.button`
     width: initial;
   }
 `;
+
+export const LoginMessage = styled.p`
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+  color: #2d3748;
+  font-weight: bold;
+  padding-top: 2rem;
+`;

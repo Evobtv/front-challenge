@@ -15,6 +15,7 @@ import {
   OptionsContainer,
   New,
   Register,
+  LoginMessage,
 } from "./style";
 import { handleValidity } from "../../utils/FormValidation";
 import { handleChange } from "../../utils/handleChangeEvent";
@@ -40,6 +41,8 @@ const LoginForm = ({
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
 
+  const [loginMessage, setLoginMessage] = useState<string>("");
+
   const sendFormData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -50,9 +53,9 @@ const LoginForm = ({
       const data = await response.json();
 
       if (data.status === "Ok") {
-        alert("Credenciais corretas");
+        setLoginMessage("Login realizado com sucesso.");
       } else {
-        alert("Credenciais inválidas");
+        setLoginMessage("Login inválido.");
       }
     } catch (err) {
       console.log(err);
@@ -155,6 +158,7 @@ const LoginForm = ({
           </Link>
         </OptionsContainer>
       </Container>
+      {<LoginMessage>{loginMessage}</LoginMessage>}
     </Wrapper>
   );
 };
